@@ -1,4 +1,8 @@
 var Counter = React.createClass({
+	getDefaultProps: function() { 
+		console.log('Wartości początkowe liczników: ');
+	},
+
 	getInitialState: function() {
 		return {
 			counter: 0
@@ -17,43 +21,37 @@ var Counter = React.createClass({
 		});
 	},
 
-	componentDidMount() {
-    	console.log('Liczniki wystartowały!');
+	componentWillMount() {
+    	console.log('Liczniki ładowane.');
+  	},
+
+  	componentWillReceiveProps() {
+  		console.log('Nastąpiło kliknięcie, licznika.');
   	},
 
 	render: function() {
 		return React.createElement('div', {onClick: this.increment},
-			React.createElement('span', {}, 'Licznik ' + this.state.counter),
+			React.createElement('span', {}, 'Licznik nr 1 ' + this.state.counter),
+		);
+		React.createElement('div', {onClick: this.decrement},
+			React.createElement('span', {}, 'Licznik nr 2 ' + this.state.counter),
 		);
 	},
-});
 
-var Counter2 = React.createClass({
-	getInitialState: function() {
-		return {
-			counter: 0
-		};
-	},
-
-	decrement: function() {
-		this.setState({
-			counter: this.state.counter - 1
-		});
-	},
+//	shouldComponentUpdate(nextProps, nextState) {
+//		return
+//			true;
+//		console.log('Zmiana wartości licznika.');
+//	},
 
 	componentDidMount() {
-    	console.log('Liczniki wystartowały!');
-  	},
+		console.log('Liczniki gotowe!');
+	},
 
-	render: function() {
-		return React.createElement('div', {onClick: this.decrement},
-			React.createElement('span', {}, 'Licznik ' + this.state.counter)
-		)
-	}
+	componentWillUnmount() {
+		console.log('Zerowanie liczników.');
+	},
 });
 
 var element = React.createElement(Counter);
 ReactDOM.render(element, document.getElementById('app'));
-
-var element2 = React.createElement(Counter2);
-ReactDOM.render(element2, document.getElementById('app2'));
