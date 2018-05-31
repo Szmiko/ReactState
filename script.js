@@ -5,7 +5,8 @@ var Counter = React.createClass({
 
 	getInitialState: function() {
 		return {
-			counter: 0
+			counter: 0,
+			counter2: 0 
 		};
 	},
 
@@ -17,7 +18,7 @@ var Counter = React.createClass({
 
 	decrement: function() {
 		this.setState({
-			counter: this.state.counter - 1
+			counter2: this.state.counter2 - 1
 		});
 	},
 
@@ -30,19 +31,10 @@ var Counter = React.createClass({
   	},
 
 	render: function() {
-		return React.createElement('div', {onClick: this.increment},
-			React.createElement('span', {}, 'Licznik nr 1 ' + this.state.counter),
-		);
-		React.createElement('div', {onClick: this.decrement},
-			React.createElement('span', {}, 'Licznik nr 2 ' + this.state.counter),
-		);
+		return React.createElement('div', {},
+			React.createElement('button', {onClick: this.increment}, 'Licznik I ' + this.state.counter),
+			React.createElement('button', {onClick: this.decrement}, 'Licznik II ' + this.state.counter2));
 	},
-
-//	shouldComponentUpdate(nextProps, nextState) {
-//		return
-//			true;
-//		console.log('Zmiana wartości licznika.');
-//	},
 
 	componentDidMount() {
 		console.log('Liczniki gotowe!');
